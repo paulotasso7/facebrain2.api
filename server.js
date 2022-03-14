@@ -15,7 +15,7 @@ const database = {
             id: '123',
             name: 'Doe',
             email: 'doe@gmail.com',
-            // password: 'cookies',
+            password: 'cookies',
             entries: 0,
             joined: new Date()
         },
@@ -26,28 +26,13 @@ const database = {
             // password: 'curupira',
             entries: 0,
             joined: new Date()
-        },
-        {
-            id: '125',
-            name: 'Boe',
-            email: 'boe@gmail.com',
-            // password: 'ramirez',
-            entries: 0,
-            joined: new Date()
-        },
-        {
-            id: '126',
-            name: 'Poe',
-            email: 'poe@gmail.com',
-            password: 'meet',
-            entries: 0,
-            joined: new Date()
         }
+
     ],
     login: [
         {
             id: '987',
-            hash: '',
+            has: '',
             email: 'doe@gmail.com'
         }
     ]
@@ -88,16 +73,16 @@ app.get('/', (req, res) => {
 
 app.post('/signin', (req, res) => {
 
-    bcrypt.compare("meet", '$2a$10$lqysVXnt43PxwX2nERbuEehkhnA/R3DT3oZe9.3jbeGtpo9hoxcu.', function(err, res) {
+    bcrypt.compare("prez", '$2a$10$ECfQbKfADbE33Gn4oAILeuNEeCQlCir3ZOD9LFlUUk6pcnlOPVWV2', function(err, res) {
         console.log('1st guess', res)
     });
-    bcrypt.compare("veggies", '$2a$10$lqysVXnt43PxwX2nERbuEehkhnA/R3DT3oZe9.3jbeGtpo9hoxcu.', function(err, res) {
+    bcrypt.compare("veggies", '$2a$10$ECfQbKfADbE33Gn4oAILeuNEeCQlCir3ZOD9LFlUUk6pcnlOPVWV2', function(err, res) {
         console.log('2nd guess', res)
     });
 
-    if( req.body.email === database.users[3].email &&
-        req.body.password === database.users[3].password) {
-            res.json('sucess')
+    if( req.body.email === database.users[0].email &&
+        req.body.password === database.users[0].password) {
+            res.json(database.users[0])
         } else {
             res.status(400).json('err logging in');
         }
@@ -107,11 +92,11 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
     const {email, name, password} = req.body;
 
+
     database.users.push ({
-        id: '127',
+        id: '125',
         name: name,
         email: email,
-        password: password,
         entries: 0,
         joined: new Date()
     })
